@@ -581,6 +581,7 @@ if($inspector2!=0){
                               while( $row = sqlsrv_fetch_array( $stmtInspectionI, SQLSRV_FETCH_ASSOC) ) {
                                 $type_of_inspection=$row['TYPE_OF_INSPECTION'];
                                 $duedate=$row['DUE_DATE'];
+                                if(@$row['ON_HIRED_DATE']!=NULL){
                                 $hiredate=$row['ON_HIRED_DATE'];
                                 // echo$newhiredate= date($hiredate. ' + 30 days');
 
@@ -589,6 +590,7 @@ if($inspector2!=0){
 
                                 //Add the DateInterval object to our DateTime object.
                                 $hiredate->add($interval);
+                              }
 
                                 echo'
                                 <tr>

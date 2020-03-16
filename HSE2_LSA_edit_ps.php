@@ -52,7 +52,7 @@ if($type==1){
 
 
         $sql = "IF NOT EXISTS (SELECT * FROM MarSIS_DW_Findings
-        WHERE FINDINGS = '$findings_LSA[$i]')
+        WHERE FINDINGS = '$finding_ovid[$i]' AND INSPECTION_ID ='$INSPECTION_ID')
         INSERT INTO MarSIS_DW_Findings (NO, INS_ITEM_ID, NO_OF_PAX, STATUS_ID, TIMEFRAME_ID, FINDINGS_ID, FINDINGS, CORRECTIVE_ACTION_PLAN,
         INSPECTION_ID, DUE_DATE, CLOSURE_DATE, UPDATED_BY, LAST_UPDATED)
         VALUES ('$no',8,NULL,'$status_LSA[$i]','$time_frame_LSA[$i]','$FINDING_ID_OVID','$findings_LSA[$i]',NULL,'$INSPECTION_ID',NULL,NULL,'$user','$update_time')";

@@ -111,7 +111,7 @@ if($inspector2!=0){
         </div>
       </br>
 
-      <button type="button" style="border: none;" onclick="myFunction()" id="showAccordianCards" class="btn btn-outline-secondary right">Expand All / Collapse All</button>
+      <!-- <button type="button" style="border: none;" onclick="myFunction()" id="showAccordianCards" class="btn btn-outline-secondary right">Expand All / Collapse All</button> -->
       <div class="accordion" id="accordionExample">
         <div class="card">
           <div class="card-header" id="headingOne" style="background:#40E0D0 !important">
@@ -405,11 +405,11 @@ if($inspector2!=0){
                   LEFT JOIN MarSIS_MDM_Status c ON a.STATUS_ID=c.STATUS_ID LEFT JOIN MarSIS_MDM_TimeFrame d ON a.TIMEFRAME_ID=d.TIMEFRAME_ID
                   WHERE INSPECTION_ID='$INSPECTION_ID' AND a.INS_ITEM_ID IN ('1','2','3','4','5','6','7')";
                   $stmtInspectionI = sqlsrv_query( $conn, $sqlInspectionI);
-
+$i=1;
                   while( $row = sqlsrv_fetch_array( $stmtInspectionI, SQLSRV_FETCH_ASSOC) ) {
                     echo"
                     <tr>
-                    <td>".$row['NO']."</td>
+                    <td>".$i."</td>
                     <td>".$row['INS_GROUP_ITEM']."</td>
                     <td>".$row['FINDINGS']."</td>";
                     if(!empty($row['NO_OF_PAX'])){
@@ -423,6 +423,7 @@ if($inspector2!=0){
 
 
                     </tr>";
+                      $i++;
                   }
                   echo "</table>";
 
@@ -462,11 +463,11 @@ if($inspector2!=0){
                       LEFT JOIN MarSIS_MDM_Status c ON a.STATUS_ID=c.STATUS_ID LEFT JOIN MarSIS_MDM_TimeFrame d ON a.TIMEFRAME_ID=d.TIMEFRAME_ID
                       WHERE INSPECTION_ID='$INSPECTION_ID' AND a.INS_ITEM_ID IN ('8','9','10','11','12','13','14','15')";
                       $stmtInspectionI = sqlsrv_query( $conn, $sqlInspectionI);
-
+$k=1;
                       while( $row = sqlsrv_fetch_array( $stmtInspectionI, SQLSRV_FETCH_ASSOC) ) {
                         echo"
                         <tr>
-                        <td>".$row['NO']."</td>
+                        <td>".$k."</td>
                         <td>".$row['INS_GROUP_ITEM']."</td>
                         <td>".$row['FINDINGS']."</td>
                         <td>N/A</td>
@@ -476,6 +477,7 @@ if($inspector2!=0){
 
 
                         </tr>";
+                        $k++;
                       }
                       echo "</table>";
 
@@ -514,11 +516,11 @@ if($inspector2!=0){
                           LEFT JOIN MarSIS_MDM_Status c ON a.STATUS_ID=c.STATUS_ID LEFT JOIN MarSIS_MDM_TimeFrame d ON a.TIMEFRAME_ID=d.TIMEFRAME_ID
                           WHERE INSPECTION_ID='$INSPECTION_ID' AND a.INS_ITEM_ID IN ('16','17','18','19')";
                           $stmtInspectionI = sqlsrv_query( $conn, $sqlInspectionI);
-
+$j=1;
                           while( $row = sqlsrv_fetch_array( $stmtInspectionI, SQLSRV_FETCH_ASSOC) ) {
                             echo"
                             <tr>
-                            <td>".$row['NO']."</td>
+                            <td>".$j."</td>
                             <td>".$row['INS_GROUP_ITEM']."</td>
                             <td>".$row['FINDINGS']."</td>
                             <td>N/A</td>
@@ -528,6 +530,7 @@ if($inspector2!=0){
 
 
                             </tr>";
+                            $j++;
                           }
                           echo "</table>";
 
@@ -571,11 +574,11 @@ if($inspector2!=0){
                               LEFT JOIN MarSIS_MDM_Status c ON a.STATUS_ID=c.STATUS_ID LEFT JOIN MarSIS_MDM_TimeFrame d ON a.TIMEFRAME_ID=d.TIMEFRAME_ID
                               WHERE INSPECTION_ID='$INSPECTION_ID'";
                               $stmtInspectionI = sqlsrv_query( $conn, $sqlInspectionI);
-
+$l=1;
                               while( $row = sqlsrv_fetch_array( $stmtInspectionI, SQLSRV_FETCH_ASSOC) ) {
                                 echo"
                                 <tr>
-                                <td>".$row['NO']."</td>
+                                <td>".$l."</td>
                                 <td>".$row['INS_GROUP_ITEM']."</td>
                                 <td>".$row['FINDINGS']."</td>";
                                 if(!empty($row['NO_OF_PAX'])){
@@ -592,6 +595,7 @@ if($inspector2!=0){
 
 
                                 </tr>";
+                                $l++;
                               }
                               echo "</table>";
 
@@ -604,7 +608,7 @@ if($inspector2!=0){
 
                     </div>
                   </br>
-                    <button type="submit" style="background-color:#40E0D0" class="btn btn-info btn-md pull-right">
+                    <button onclick="location.href='index.php?page=home'" style="background-color:#40E0D0" class="btn btn-info btn-md pull-right">
                       <i class="fa fa-dot-circle-o"></i> Close
                     </button>
                   </div>

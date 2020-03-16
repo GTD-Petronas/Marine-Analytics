@@ -69,7 +69,7 @@ $count= $row['count'];
 
         <div class="panel panel-default">
           <div class="panel-heading main-color-bg">
-            <h3 class="panel-title">Mandatory HSE Inspection I</h3>
+            <h3 class="panel-title">Others</h3>
           </div>
           <div class="panel-body">
 

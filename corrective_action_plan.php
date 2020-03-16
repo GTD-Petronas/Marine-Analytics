@@ -576,6 +576,7 @@ if($inspector2!=0){
                               WHERE a.INSPECTION_ID='$INSPECTION_ID' AND c.STATUS_ID IN('2','4')";
                               $stmtInspectionI = sqlsrv_query( $conn, $sqlInspectionI);
 
+                              if(@$row['ON_HIRED_DATE']!=NULL){
                               $hiredate=$row['ON_HIRED_DATE'];
                               // echo$newhiredate= date($hiredate. ' + 30 days');
 
@@ -584,6 +585,7 @@ if($inspector2!=0){
 
                               //Add the DateInterval object to our DateTime object.
                               $hiredate->add($interval);
+                            }
 
 
                               $count=1;

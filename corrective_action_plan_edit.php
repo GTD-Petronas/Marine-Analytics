@@ -403,7 +403,7 @@ if($inspector2!=0){
                   <?php
                   $sqlInspectionI = "SELECT * FROM MarSIS_DW_Findings a LEFT JOIN MarSIS_MDM_InspectionItem b ON a.INS_ITEM_ID=b.NO
                   LEFT JOIN MarSIS_MDM_Status c ON a.STATUS_ID=c.STATUS_ID LEFT JOIN MarSIS_MDM_TimeFrame d ON a.TIMEFRAME_ID=d.TIMEFRAME_ID
-                  WHERE INSPECTION_ID='$INSPECTION_ID' AND a.INS_ITEM_ID IN ('1','2','3','4','5','6','7')";
+                  WHERE INSPECTION_ID='$INSPECTION_ID' AND a.INS_ITEM_ID IN ('1','2','3','4','5','6','7') ORDER BY FINDINGS_ID ASC";
                   $stmtInspectionI = sqlsrv_query( $conn, $sqlInspectionI);
                   $i=1;
                   while( $row = sqlsrv_fetch_array( $stmtInspectionI, SQLSRV_FETCH_ASSOC) ) {
@@ -417,9 +417,13 @@ if($inspector2!=0){
                     }else{
                       echo "<td>N/A</td>";
                     }
-                    echo "<td>".$row['STATUS_NAME']."</td>
-                    <td>".$row['TIMEFRAME_NAME']."</td>
-                    <td>".$row['LAST_UPDATED']."</td>
+                    echo "<td>".$row['STATUS_NAME']."</td>";
+                    if($row['TIMEFRAME_NAME']==NULL){
+                      echo"<td>N/A</td>";
+                    }else{
+                    echo"<td>".$row['TIMEFRAME_NAME']."</td>";
+                  }
+                    echo"<td>".$row['LAST_UPDATED']."</td>
 
 
                     </tr>";
@@ -461,7 +465,7 @@ if($inspector2!=0){
                       <?php
                       $sqlInspectionI = "SELECT * FROM MarSIS_DW_Findings a LEFT JOIN MarSIS_MDM_InspectionItem b ON a.INS_ITEM_ID=b.NO
                       LEFT JOIN MarSIS_MDM_Status c ON a.STATUS_ID=c.STATUS_ID LEFT JOIN MarSIS_MDM_TimeFrame d ON a.TIMEFRAME_ID=d.TIMEFRAME_ID
-                      WHERE INSPECTION_ID='$INSPECTION_ID' AND a.INS_ITEM_ID IN ('8','9','10','11','12','13','14','15')";
+                      WHERE INSPECTION_ID='$INSPECTION_ID' AND a.INS_ITEM_ID IN ('8','9','10','11','12','13','14','15') ORDER BY FINDINGS_ID ASC";
                       $stmtInspectionI = sqlsrv_query( $conn, $sqlInspectionI);
                       $j=1;
                       while( $row = sqlsrv_fetch_array( $stmtInspectionI, SQLSRV_FETCH_ASSOC) ) {
@@ -471,9 +475,13 @@ if($inspector2!=0){
                         <td>".$row['INS_GROUP_ITEM']."</td>
                         <td>".$row['FINDINGS']."</td>
                         <td>N/A</td>
-                        <td>".$row['STATUS_NAME']."</td>
-                        <td>".$row['TIMEFRAME_NAME']."</td>
-                        <td>".$row['LAST_UPDATED']."</td>
+                        <td>".$row['STATUS_NAME']."</td>";
+                        if($row['TIMEFRAME_NAME']==NULL){
+                          echo"<td>N/A</td>";
+                        }else{
+                        echo"<td>".$row['TIMEFRAME_NAME']."</td>";
+                      }
+                        echo"<td>".$row['LAST_UPDATED']."</td>
 
 
                         </tr>";
@@ -514,7 +522,7 @@ if($inspector2!=0){
                           <?php
                           $sqlInspectionI = "SELECT * FROM MarSIS_DW_Findings a LEFT JOIN MarSIS_MDM_InspectionItem b ON a.INS_ITEM_ID=b.NO
                           LEFT JOIN MarSIS_MDM_Status c ON a.STATUS_ID=c.STATUS_ID LEFT JOIN MarSIS_MDM_TimeFrame d ON a.TIMEFRAME_ID=d.TIMEFRAME_ID
-                          WHERE INSPECTION_ID='$INSPECTION_ID' AND a.INS_ITEM_ID IN ('16','17','18','19')";
+                          WHERE INSPECTION_ID='$INSPECTION_ID' AND a.INS_ITEM_ID IN ('16','17','18','19') ORDER BY FINDINGS_ID ASC";
                           $stmtInspectionI = sqlsrv_query( $conn, $sqlInspectionI);
                           $k=1;
                           while( $row = sqlsrv_fetch_array( $stmtInspectionI, SQLSRV_FETCH_ASSOC) ) {
@@ -524,10 +532,13 @@ if($inspector2!=0){
                             <td>".$row['INS_GROUP_ITEM']."</td>
                             <td>".$row['FINDINGS']."</td>
                             <td>N/A</td>
-                            <td>".$row['STATUS_NAME']."</td>
-                            <td>".$row['TIMEFRAME_NAME']."</td>
-                            <td>".$row['LAST_UPDATED']."</td>
-
+                            <td>".$row['STATUS_NAME']."</td>";
+                            if($row['TIMEFRAME_NAME']==NULL){
+                              echo"<td>N/A</td>";
+                            }else{
+                            echo"<td>".$row['TIMEFRAME_NAME']."</td>";
+                          }
+                            echo"<td>".$row['LAST_UPDATED']."</td>
 
                             </tr>";
                             $k++;
@@ -573,7 +584,7 @@ if($inspector2!=0){
                               <?php
                               $sqlInspectionI = "SELECT * FROM MarSIS_DW_Findings a LEFT JOIN MarSIS_MDM_InspectionItem b ON a.INS_ITEM_ID=b.NO
                               LEFT JOIN MarSIS_MDM_Status c ON a.STATUS_ID=c.STATUS_ID LEFT JOIN MarSIS_MDM_TimeFrame d ON a.TIMEFRAME_ID=d.TIMEFRAME_ID JOIN MarSIS_DW_InspectionDetails e ON a.INSPECTION_ID=e.INSPECTION_ID
-                              WHERE a.INSPECTION_ID='$INSPECTION_ID' AND c.STATUS_ID IN('2','4')";
+                              WHERE a.INSPECTION_ID='$INSPECTION_ID' AND c.STATUS_ID IN('2','4') ORDER BY FINDINGS_ID ASC";
                               $stmtInspectionI = sqlsrv_query( $conn, $sqlInspectionI);
 
 
@@ -581,16 +592,16 @@ if($inspector2!=0){
                               while( $row = sqlsrv_fetch_array( $stmtInspectionI, SQLSRV_FETCH_ASSOC) ) {
                                 $type_of_inspection=$row['TYPE_OF_INSPECTION'];
                                 $duedate=$row['DUE_DATE'];
-                                if(@$row['ON_HIRED_DATE']!=NULL){
-                                $hiredate=$row['ON_HIRED_DATE'];
+                                $hiredate=$row['INSPECTION_DATE'];
                                 // echo$newhiredate= date($hiredate. ' + 30 days');
 
                                 //Create a new DateInterval object using P30D.
                                 $interval = new DateInterval('P30D');
 
                                 //Add the DateInterval object to our DateTime object.
-                                $hiredate->add($interval);
-                              }
+                                $newhiredate=$hiredate->add($interval);
+                                // $newhiredate->format('d-m-Y');
+
 
                                 echo'
                                 <tr>
@@ -602,6 +613,7 @@ if($inspector2!=0){
                                 }else{
                                   echo '<td>N/A</td>';
                                 }
+                                if($row['STATUS_ID']==2){
                                 echo '<td><select id="status'.$row['FINDINGS_ID'].'" name="status_ovid[]">
                                 <option value=""></option>';
 
@@ -609,30 +621,39 @@ if($inspector2!=0){
                                 $stmt = sqlsrv_query( $conn, $sql);
 
                                 while( $arr = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC) ){
-
                                   echo	'<option '.($arr['STATUS_ID'] == $row['STATUS_ID'] ? 'SELECTED':'').' value="'.$arr['STATUS_ID'].'">'.($arr['STATUS_NAME']).'</option>';
                                 }
-                                echo'</select></td>
-                                <td>'.$row['TIMEFRAME_NAME'].'</td>';
-                                if(!empty($row['FINDINGS'])){
-                                  echo '<td><textarea id="captextarea'.$row['FINDINGS_ID'].'" class="captextarea">'.$row['CORRECTIVE_ACTION_PLAN'].'</textarea></td>';
+                                echo'</select></td>';
+                              }else{
+                                echo'<td><select name="status_ovid[]" disabled>
+                                <option value="">CLOSED</option>
+                                </select></td>';
+                              }
+                              if($row['TIMEFRAME_NAME']==NULL){
+                                echo"<td>N/A</td>";
+                              }else{
+                              echo"<td>".$row['TIMEFRAME_NAME']."</td>";
+                            }
+
+                                if(!empty($row['CORRECTIVE_ACTION_PLAN'])){
+                                  echo '<td><textarea disabled id="captextarea'.$row['FINDINGS_ID'].'" class="captextarea">'.$row['CORRECTIVE_ACTION_PLAN'].'</textarea></td>';
                                 }else{
                                   echo '<td><textarea id="captextarea'.$row['FINDINGS_ID'].'" class="captextarea"></textarea></td>';
                                 }
-                                if($duedate!=NULL){
-                                  echo'<td><input type="date" name="trans_date" id="cap_duedate'.$row['FINDINGS_ID'].'"  value="'.date_format($duedate, 'Y-m-d').'" disabled></td>';
-                                }elseif($type_of_inspection==2 && $duedate==NULL){
-                                  echo'<td><input type="date" name="trans_date" id="cap_duedate'.$row['FINDINGS_ID'].' " value="'.$hiredate->format("Y-m-d").'" disabled></td>';
-                                }else{
-                                  echo'<td><input type="date" name="trans_date" id="cap_duedate'.$row['FINDINGS_ID'].'"></td>';
-                                }
+
+                                  echo'<td><input type="date" name="trans_date" id="cap_duedate'.$row['FINDINGS_ID'].'" value="'.$newhiredate->format('Y-m-d').'" disabled></td>';
+
                                 if(!empty($row['CLOSURE_DATE'])){
-                                  echo'<td><input type="date" name="trans_date" id="cap_date_closure'.$row['FINDINGS_ID'].'" value="'.date_format($row['CLOSURE_DATE'], 'Y-m-d').'"></td>';
+                                  echo'<td><input type="date" name="trans_date" id="cap_date_closure'.$row['FINDINGS_ID'].'" value="'.date_format($row['CLOSURE_DATE'], 'Y-m-d').'" disabled></td>';
                                 }else{
                                   echo'<td><input type="date" name="trans_date" id="cap_date_closure'.$row['FINDINGS_ID'].'"></td>';
                                 }
-                                echo'<td><a onclick="save_data_all(\''.$row['FINDINGS_ID'].'\');location.reload();"><span class="glyphicon glyphicon-ok"></span></a></td>
-                                <td>'.$row['LAST_UPDATED'].'</td>
+                                if(empty($row['CLOSURE_DATE'])){
+                                echo'<td><a onclick="save_data_all(\''.$row['FINDINGS_ID'].'\');location.reload();"><span class="glyphicon glyphicon-ok"></span></a></td>';
+                              }else{
+                                echo'<td></td>';
+                              }
+                                echo'<td>'.$row['LAST_UPDATED'].'</td>
 
 
                                 </tr>';
@@ -665,16 +686,13 @@ if($inspector2!=0){
       <script>
 
       function save_data_all(finding_id){
-        var duedate = document.getElementById("cap_duedate"+finding_id).value;
         var date_closure = document.getElementById("cap_date_closure"+finding_id).value;
+        var date_due = document.getElementById("cap_duedate"+finding_id).value;
         var textarea = document.getElementById("captextarea"+finding_id).value;
         var status = document.getElementById("status"+finding_id).value;
 
 
-        // alert(duedate);
-        // alert(date_closure);
-        // alert(textarea);
-        // alert(finding_id);
+          if(textarea!="" && date_closure!=""){
 
         if (window.XMLHttpRequest) {
 
@@ -688,8 +706,12 @@ if($inspector2!=0){
 
           }
         };
-        xmlhttp.open("GET","corrective_action_plan_edit_ps.php?finding_id="+ finding_id + "&duedate="+ duedate+ "&date_closure="+ date_closure+ "&textarea="+textarea +"&status="+ status,true);
+        xmlhttp.open("GET","corrective_action_plan_edit_ps.php?finding_id="+ finding_id + "&date_closure="+ date_closure+ "&textarea="+textarea +"&status="+ status +"&duedate="+ date_due,true);
         xmlhttp.send();
+
+      }else{
+        alert('Please Insert Corrective Action Plan and Date of Closure')
+      }
 
       }
 

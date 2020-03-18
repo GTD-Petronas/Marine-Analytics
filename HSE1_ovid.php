@@ -129,7 +129,7 @@ $count= $row['count'];
                         echo'
                         <tr>
                         <td><textarea name="findings_ovid[]"  id="finding_ovid'.$row['FINDINGS_ID'].'" cols="65">'.$row['FINDINGS'].'</textarea></td>
-                        <td><select id="status_ovid'.$row['FINDINGS_ID'].'" name="status_ovid[]">
+                        <td><select id="status_ovid'.$row['FINDINGS_ID'].'"  name="status_ovid[]">
                         <option value=""></option>';
 
                         $sql="SELECT * FROM MarSIS_MDM_Status WHERE STATUS_ID IN ('2','3')";
@@ -166,7 +166,7 @@ $count= $row['count'];
                       ?>
                       <tr>
                         <td><textarea name="findings_ovid[]"  cols="65"></textarea></td>
-                        <td><select id="status_ovid" name="status_ovid[]">
+                        <td><select id="status_ovid"  name="status_ovid[]">
                           <option value=""></option>
                           <?php
                           $sql="SELECT * FROM MarSIS_MDM_Status WHERE STATUS_ID IN ('2','3')";
@@ -179,7 +179,7 @@ $count= $row['count'];
                           ?>
                         </select>
                       </td>
-                      <td><select id="time_frame" name="time_frame_ovid[]">
+                      <td><select id="time_frame"  name="time_frame_ovid[]">
                         <option value=""></option>
                         <?php
                         $sql1="SELECT * FROM MarSIS_MDM_TimeFrame";
@@ -205,10 +205,10 @@ $count= $row['count'];
           </div>
 
         </div>
-      </br>
-      <button type="submit" name="submit" class="btn btn-md pull-right" style="background-color:#40E0D0">Save</button>
+          <button formaction="index.php?page=HSE1_tod" class="btn btn-md pull-right" style="background-color:#40E0D0;">Next</button>
+      <button type="submit" name="submit" class="btn btn-md pull-right" style="background-color:#40E0D0; margin-right:5px;">Save</button>
     </form>
-    <button onclick="location.href='index.php?page=HSE1_tod'" class="btn btn-md pull-right" style="background-color:#40E0D0; margin-right:5px; ">Next</button>
+
 
   </div>
 </div>

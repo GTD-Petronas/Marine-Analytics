@@ -54,8 +54,12 @@ if($type==1){
         $finding_id_ovid=$arr_ovid['FINDINGS_ID'];
         $FINDING_ID_OVID=++$finding_id_ovid;
 
+        if($status_tod[$i]==2 && $time_frame_tod[$i]==NULL){
+          $time_frame_tod[$i]=1;
+        }
+
         $sql = "IF NOT EXISTS (SELECT * FROM MarSIS_DW_Findings
-        WHERE FINDINGS = '$finding_ovid[$i]' AND INSPECTION_ID ='$INSPECTION_ID')
+        WHERE FINDINGS = '$findings_tod[$i]' AND INSPECTION_ID ='$INSPECTION_ID')
         INSERT INTO MarSIS_DW_Findings (NO, INS_ITEM_ID, NO_OF_PAX, STATUS_ID, TIMEFRAME_ID, FINDINGS_ID, FINDINGS, CORRECTIVE_ACTION_PLAN,
         INSPECTION_ID, DUE_DATE, CLOSURE_DATE, UPDATED_BY, LAST_UPDATED)
         VALUES ('$no',2,'$pax_no_tod[$i]','$status_tod[$i]','$time_frame_tod[$i]','$FINDING_ID_OVID','$findings_tod[$i]',NULL,'$INSPECTION_ID',NULL,NULL,'$user','$update_time')";

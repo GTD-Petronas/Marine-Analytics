@@ -5,6 +5,7 @@ if(@$_GET['session']==1){
 }
 
 @$INSPECTION_ID_edit=$_SESSION['inspection_id'];
+@$USER_ID=$_SESSION['USER_ID'];
 if(!empty($INSPECTION_ID_edit)){
   // $INSPECTION_ID_edit=$_SESSION['inspection_id'];
   $query = "SELECT * FROM MarSIS_DW_InspectionDetails a JOIN MarSIS_MDM_VesselDetails b ON a.VESSEL_ID=b.VESSEL_ID
@@ -140,7 +141,7 @@ if(!empty($INSPECTION_ID_edit)){
             <?php
             if(!empty($INSPECTION_ID_edit)){
 
-              echo'<input type="hidden" class="form-control" id="inspection_id" name="inspection_id" value="'.$INSPECTION_ID_edit.'">';
+              echo'<input type="hidden" class="form-control" id="inspection_id_edit" name="inspection_id" value="'.$INSPECTION_ID_edit.'">';
             }else{
 
               echo'<input type="hidden" class="form-control" id="inspection_id" name="inspection_id" value="'.$INSPECTION_ID.'">';
@@ -156,7 +157,7 @@ if(!empty($INSPECTION_ID_edit)){
                     <p>Vessel Name:</p>
                   </div>
                   <div class="col-md-8">
-                    <input type="text" class="form-control" id="vessel_name" name="vessel_name"  value="<?php echo @$vessel_name ?>">
+                    <input type="text" class="form-control" id="vessel_name" name="vessel_name"  value="<?php echo @$vessel_name ?>" required>
                   </div>
                 </div>
               </div>
@@ -166,7 +167,7 @@ if(!empty($INSPECTION_ID_edit)){
                     <p>IMO Number:</p>
                   </div>
                   <div class="col-md-8">
-                    <input class="form-control" id="IMO_Number" name="IMO_Number" value="<?php echo @$IMO_no ?>">
+                    <input class="form-control" id="IMO_Number" name="IMO_Number" value="<?php echo @$IMO_no ?>" required>
                   </div>
                 </div>
               </div>
@@ -179,7 +180,7 @@ if(!empty($INSPECTION_ID_edit)){
                     <p>Vessel Type:</p>
                   </div>
                   <div class="col-md-8">
-                    <input class="form-control" id="vessel_type" name="vessel_type" value="<?php echo @$vessel_type ?>">
+                    <input class="form-control" id="vessel_type" name="vessel_type" value="<?php echo @$vessel_type ?>"required>
                   </div>
                 </div>
               </div>
@@ -189,7 +190,7 @@ if(!empty($INSPECTION_ID_edit)){
                     <p>Country of Registry:</p>
                   </div>
                   <div class="col-md-8">
-                    <input class="form-control" id="country" name="country" value="<?php echo @$country ?>">
+                    <input class="form-control" id="country" name="country" value="<?php echo @$country ?>"required>
                   </div>
                 </div>
               </div>
@@ -202,7 +203,7 @@ if(!empty($INSPECTION_ID_edit)){
                     <p>Vessel Age:</p>
                   </div>
                   <div class="col-md-8">
-                    <input class="form-control" id="vessel_age" name="vessel_age" value="<?php echo @$vessel_age ?>">
+                    <input class="form-control" id="vessel_age" name="vessel_age" value="<?php echo @$vessel_age ?>"required>
                   </div>
                 </div>
               </div>
@@ -212,7 +213,7 @@ if(!empty($INSPECTION_ID_edit)){
                     <p>Contractor/Ship Owner:</p>
                   </div>
                   <div class="col-md-8">
-                    <input class="form-control" id="Contractor_owner" name="Contractor_owner" value="<?php echo @$contractor ?>">
+                    <input class="form-control" id="Contractor_owner" name="Contractor_owner" value="<?php echo @$contractor ?>"required>
                   </div>
                 </div>
               </div>
@@ -225,7 +226,7 @@ if(!empty($INSPECTION_ID_edit)){
                     <p>Location:</p>
                   </div>
                   <div class="col-md-8">
-                    <input class="form-control" id="location" name="location" value="<?php echo @$location ?>">
+                    <input class="form-control" id="location" name="location" value="<?php echo @$location ?>"required>
 
                   </div>
                 </div>
@@ -236,7 +237,7 @@ if(!empty($INSPECTION_ID_edit)){
                     <p>Vessel Master:</p>
                   </div>
                   <div class="col-md-8">
-                    <input class="form-control" id="vessel_master" name="vessel_master" value="<?php echo @$vessel_master ?>">
+                    <input class="form-control" id="vessel_master" name="vessel_master" value="<?php echo @$vessel_master ?>"required>
 
                   </div>
                 </div>
@@ -244,7 +245,7 @@ if(!empty($INSPECTION_ID_edit)){
             </div>
 
             <?php
-            $sql="SELECT * FROM MARSIS_NO";
+            $sql="SELECT * FROM MARSIS_NO WHERE NO NOT IN ('0')";
             $stmt = sqlsrv_query( $conn, $sql);
 
             ?>
@@ -255,7 +256,7 @@ if(!empty($INSPECTION_ID_edit)){
                     <p>Person On Board:</p>
                   </div>
                   <div class="col-md-8">
-                    <select id="person_board" name="person_on_board" class="form-control">
+                    <select id="person_board" name="person_on_board" class="form-control" required>
                       <option value=""> </option>
                       <?php
                       while( $arr = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ){
@@ -279,7 +280,7 @@ if(!empty($INSPECTION_ID_edit)){
                     <p>Chief Engineer:</p>
                   </div>
                   <div class="col-md-8">
-                    <input class="form-control"  name="chief" value="<?php echo @$chief ?>">
+                    <input class="form-control"  name="chief" value="<?php echo @$chief ?>" required>
                   </div>
                 </div>
               </div>
@@ -307,7 +308,7 @@ if(!empty($INSPECTION_ID_edit)){
                     <p>Inspection Date:</p>
                   </div>
                   <div class="col-md-8">
-                    <input type="date" class="form-control" id="projectenddate" name="inspection_date" value="<?php echo @date_format($inspection_date, 'Y-m-d') ?>">
+                    <input type="date" class="form-control" id="projectenddate" name="inspection_date" value="<?php echo @date_format($inspection_date, 'Y-m-d') ?>" required>
                   </div>
                 </div>
               </div>
@@ -317,7 +318,7 @@ if(!empty($INSPECTION_ID_edit)){
                     <p>On Hired Date:</p>
                   </div>
                   <div class="col-md-8">
-                    <input type="date" class="form-control" name="on_hire_date" id="on_hire_date"  value="<?php echo @date_format($on_hire_date, 'Y-m-d') ?>">
+                    <input type="date" class="form-control" name="on_hire_date" id="on_hire_date"  value="<?php echo @date_format($on_hire_date, 'Y-m-d') ?>" required>
                   </div>
                 </div>
               </div>
@@ -335,7 +336,7 @@ if(!empty($INSPECTION_ID_edit)){
                     <p>Type of Inspection:</p>
                   </div>
                   <div class="col-md-8">
-                    <select id="" name="type_of_inspection" class="form-control">
+                    <select id="" name="type_of_inspection" class="form-control" required>
                       <option value=""> </option>
                       <?php
                       while( $arr = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ){
@@ -366,7 +367,7 @@ if(!empty($INSPECTION_ID_edit)){
                   </div>
                   <div class="col-md-8">
 
-                    <select id="" name="requested_by" class="form-control">
+                    <select id="" name="requested_by" class="form-control" required>
                       <option value=""> </option>
                       <?php
                       while( $arr = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ){
@@ -399,7 +400,7 @@ if(!empty($INSPECTION_ID_edit)){
                   </div>
                   <div class="col-md-8">
 
-                    <select id="" name="area_operation" class="form-control">
+                    <select id="" name="area_operation" class="form-control" required>
                       <option value=""> </option>
                       <?php
                       while( $arr = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ){
@@ -429,7 +430,7 @@ if(!empty($INSPECTION_ID_edit)){
                     <p>Activity:</p>
                   </div>
                   <div class="col-md-8">
-                    <select id="" name="activity" class="form-control">
+                    <select id="" name="activity" class="form-control" required>
                       <option value=""> </option>
                       <?php
                       while( $arr = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ){
@@ -449,7 +450,7 @@ if(!empty($INSPECTION_ID_edit)){
             </div>
 
             <?php
-            $sql="SELECT * FROM MarSIS_MDM_User";
+            $sql="SELECT * FROM MarSIS_MDM_User ORDER BY USER_NAME ASC";
             $stmt = sqlsrv_query( $conn, $sql);
 
             ?>
@@ -461,27 +462,20 @@ if(!empty($INSPECTION_ID_edit)){
                     <p>Inspector No. 1:</p>
                   </div>
                   <div class="col-md-8">
-
-                    <select id="" name="inspector1" class="form-control">
-                      <option value=""> </option>
-                      <?php
-                      while( $arr = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ){
-                        if(!empty($INSPECTION_ID_edit)){
-                          echo	'<option '.($arr['USER_ID'] == $row['INSPECTOR_1'] ? 'SELECTED':'').' value="'.$arr['USER_ID'].'">'.$arr['USER_NAME'].'</option>';
-
-                        }else{
-                          echo	'<option value="'.$arr['USER_ID'].'">'.$arr['USER_NAME'].'</option>';
-                        }
-                      }
-
-                      ?>
-                    </select>
+                    <?php
+                    $query_user = " SELECT * FROM MarSIS_MDM_User WHERE USER_ID=$USER_ID";
+                    $result_user = sqlsrv_query($conn,$query_user);
+                    $row_user = sqlsrv_fetch_array($result_user, SQLSRV_FETCH_ASSOC);
+                    $user_name = $row_user['USER_NAME'];
+                    ?>
+                    <input type="hidden" class="form-control" id="inspector1" name="inspector1" value="<?php echo @$USER_ID ?>">
+                    <input class="form-control"   value="<?php echo @$user_name ?>" disabled>
                   </div>
                 </div>
               </div>
 
               <?php
-              $sql="SELECT * FROM MarSIS_MDM_User";
+              $sql="SELECT * FROM MarSIS_MDM_User ORDER BY USER_NAME ASC";
               $stmt = sqlsrv_query( $conn, $sql);
 
               ?>
@@ -626,15 +620,4 @@ if(!empty($INSPECTION_ID_edit)){
     document.getElementById('checkbox').onchange = function() {
       document.getElementById('inspector2').disabled = !this.checked;
     };
-  </script>
-
-  <script>
-
-  var id = document.getElementById('inspection_id').value;
-  var res = id.split("INSP");
-
-  var plus = ++res[1];
-  var inspection_id ="INSP"+plus;
-  document.getElementById("inspection_value").value=inspection_id;
-
-</script>
+    </script>

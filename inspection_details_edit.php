@@ -1,4 +1,5 @@
 <?php
+@$USER_ID=$_SESSION['USER_ID'];
 if(@$_GET['session_edit']==1){
   unset($_SESSION['inspection_id']);
   unset($_SESSION['inspection_id_edit']);
@@ -444,19 +445,14 @@ if(!empty($_SESSION['inspection_id_edit'])){
                     <p>Inspector No. 1:</p>
                   </div>
                   <div class="col-md-8">
-
-                    <select id="" name="inspector1" class="form-control">
-                      <option value=""> </option>
-                      <?php
-                      while( $arr = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ){
-
-                          echo	'<option '.($arr['USER_ID'] == $row['INSPECTOR_1'] ? 'SELECTED':'').' value="'.$arr['USER_ID'].'">'.$arr['USER_NAME'].'</option>';
-
-
-                      }
-
-                      ?>
-                    </select>
+                    <?php
+                    $query_user = "SELECT * FROM MarSIS_MDM_User WHERE USER_ID=$USER_ID";
+                    $result_user = sqlsrv_query($conn,$query_user);
+                    $row_user = sqlsrv_fetch_array($result_user, SQLSRV_FETCH_ASSOC);
+                    $user_name = $row_user['USER_NAME'];
+                    ?>
+                    <input type="hidden" class="form-control" id="inspector1" name="inspector1" value="<?php echo @$USER_ID ?>">
+                    <input class="form-control"   value="<?php echo @$user_name ?>" disabled>
                   </div>
                 </div>
               </div>

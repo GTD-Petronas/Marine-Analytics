@@ -129,11 +129,11 @@ $count= $row['count'];
 
                         echo'
                         <tr>
-                        <td><textarea name="findings_tod[]"  id="finding'.$row['FINDINGS_ID'].'" cols="65">'.$row['FINDINGS'].'</textarea></td>
-                        <td><select id="pax'.$row['FINDINGS_ID'].'" name="pax_no_tod[]">
+                        <td><textarea name="findings_tod[]"  id="finding_tod'.$row['FINDINGS_ID'].'" cols="65">'.$row['FINDINGS'].'</textarea></td>
+                        <td><select id="pax_tod'.$row['FINDINGS_ID'].'" name="pax_no_tod[]">
                         <option value=""></option>';
 
-                        $sql2="SELECT * FROM MARSIS_NO";
+                        $sql2="SELECT * FROM MARSIS_NO ORDER BY NO ASC";
                         $stmt2 = sqlsrv_query( $conn, $sql2);
 
                         while( $arr2 = sqlsrv_fetch_array($stmt2, SQLSRV_FETCH_ASSOC) ){
@@ -142,7 +142,7 @@ $count= $row['count'];
                         }
                         echo'</select></td>
 
-                        <td><select id="status" name="status_tod[]">
+                        <td><select id="status_tod" name="status_tod[]">
                         <option value=""></option>';
 
                         $sql="SELECT * FROM MarSIS_MDM_Status WHERE STATUS_ID IN ('2','3')";
@@ -154,7 +154,7 @@ $count= $row['count'];
                         }
                         echo'</select></td>
 
-                        <td><select id="time_frame'.$row['FINDINGS_ID'].'" name="time_frame_tod[]">
+                        <td><select id="time_frame_tod'.$row['FINDINGS_ID'].'" name="time_frame_tod[]">
                         <option value=""></option>';
 
                         $sql1="SELECT * FROM MarSIS_MDM_TimeFrame";
@@ -222,10 +222,9 @@ $count= $row['count'];
 
 
         </div>
-      </br>
-      <button type="submit" name="submit" class="btn btn-md pull-right" style="background-color:#40E0D0">Save</button>
-      </form>
-      <button onclick="location.href='index.php?page=HSE1_osis_edit'" class="btn btn-md pull-right" style="background-color:#40E0D0; margin-right:5px; ">Next</button>
+        <button formaction="index.php?page=HSE1_osis_edit" class="btn btn-md pull-right" style="background-color:#40E0D0;">Next</button>
+        <button type="submit" name="submit" class="btn btn-md pull-right" style="background-color:#40E0D0; margin-right:5px;">Save</button>
+        </form>
 
   </div>
 </div>
@@ -243,7 +242,7 @@ function delete_data(finding_id){
   var finding = document.getElementById("finding_tod"+finding_id).value;
   var time_frame = document.getElementById("time_frame_tod"+finding_id).value;
   var status = document.getElementById("status_tod"+finding_id).value;
-    var pax = document.getElementById("pax"+finding_id).value;
+    var pax = document.getElementById("pax_tod"+finding_id).value;
   var type = 1; //delete
 
 
@@ -270,7 +269,7 @@ function update_data(finding_id){
   var finding = document.getElementById("finding_tod"+finding_id).value;
   var time_frame = document.getElementById("time_frame_tod"+finding_id).value;
   var status = document.getElementById("status_tod"+finding_id).value;
-  var pax = document.getElementById("pax"+finding_id).value;
+  var pax = document.getElementById("pax_tod"+finding_id).value;
   var type = 2; //update
 
 

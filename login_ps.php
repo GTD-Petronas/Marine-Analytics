@@ -4,8 +4,8 @@
 
 	session_start();
 
-	 $username = $_POST['email'];
-	 $password = $_POST['password'];
+	echo $username = $_POST['email'];
+	echo $password = $_POST['password'];
 
 	$sql = "SELECT * FROM [DEV_PDTHSEPM_CDS].[dbo].[MarSIS_MDM_User] WHERE USER_EMAIL='$username' AND PASSWORD='$password'";
 

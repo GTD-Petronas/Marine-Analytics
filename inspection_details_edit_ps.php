@@ -42,7 +42,7 @@ if(isset($_POST["submit"])){
       $stmt = sqlsrv_query($conn, $sql);
       //
       if ($stmt) {
-        // echo "<script type= 'text/javascript'>location.href = 'index.php?page=HSE1_ovid_edit' </script>";
+        echo "<script type= 'text/javascript'>location.href = 'index.php?page=HSE1_ovid_edit' </script>";
 
       }else{
         die( print_r( sqlsrv_errors(), true));

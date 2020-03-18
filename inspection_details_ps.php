@@ -53,6 +53,15 @@ if(!empty($_SESSION['inspection_id'])){
 
 }else{
 
+  $sql2="SELECT * FROM MarSIS_DW_InspectionDetails ORDER BY INSPECTION_ID DESC";
+  $stmt2 = sqlsrv_query($conn, $sql2);
+  $arr2 = sqlsrv_fetch_array( $stmt2, SQLSRV_FETCH_ASSOC);
+  $INSPECTION_ID=$arr2['INSPECTION_ID'];
+  $pieces = explode("INSP", $INSPECTION_ID);
+  $pieces[1];
+  $INSPECTION_ADD=++$pieces[1];
+  $INSPECTION_ADD_PLUSS="INSP$INSPECTION_ADD";
+
 
   $sql="SELECT * FROM MarSIS_DW_InspectionDetails ORDER BY NO DESC";
   $stmt = sqlsrv_query($conn, $sql);
@@ -80,13 +89,13 @@ if(!empty($_SESSION['inspection_id'])){
   $sql1 = "INSERT INTO MarSIS_DW_InspectionDetails (NO, INSPECTION_ID, VESSEL_ID, LOCATION, PERSON_ON_BOARD,VESSEL_MASTER, CHIEF_ENGINEER,
     INSPECTION_DATE, TYPE_OF_INSPECTION, AREA_OF_OPERATION, INSPECTOR_1, INSPECTOR_2, ON_HIRED_DATE, REQUESTED_BY, ACTIVITY,
     SCOPE_OF_INSPECTION,UPDATED_BY,UPDATED_TIME)
-    VALUES ('$NO','$INSPECTION_ID','$vessel_id','$location','$person_on_board','$vessel_master','$chief','$inspection_date','$type_of_inspection',
+    VALUES ('$NO','$INSPECTION_ADD_PLUSS','$vessel_id','$location','$person_on_board','$vessel_master','$chief','$inspection_date','$type_of_inspection',
       '$area_operation','$inspector1','$inspector2','$on_hire_date','$requested_by','$activity','$scope_inspection','$user','$update_time')";
       $stmt1 = sqlsrv_query($conn, $sql1);
       //
       if ($stmt1) {
 
-        $_SESSION['inspection_id'] = $INSPECTION_ID;
+        $_SESSION['inspection_id'] = $INSPECTION_ADD_PLUSS;
 
         echo "<script type= 'text/javascript'>location.href = 'index.php?page=HSE1_ovid' </script>";
 

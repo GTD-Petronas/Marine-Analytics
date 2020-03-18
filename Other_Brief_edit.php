@@ -196,10 +196,9 @@ $count= $row['count'];
           </div>
 
         </div>
-      </br>
-      <button type="submit" name="submit" class="btn btn-md pull-right" style="background-color:#40E0D0">Save</button>
-      </form>
-      <button onclick="location.href='index.php?page=Other_Positive_edit'" class="btn btn-md pull-right" style="background-color:#40E0D0; margin-right:5px; ">Next</button>
+        <button formaction="index.php?page=Other_Positive_edit" class="btn btn-md pull-right" style="background-color:#40E0D0;">Next</button>
+        <button type="submit" name="submit" class="btn btn-md pull-right" style="background-color:#40E0D0; margin-right:5px;">Save</button>
+        </form>
 
   </div>
 </div>

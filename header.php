@@ -89,13 +89,13 @@
 							</div>
 						</div>
 
-						<div class="list-group-item">
+						<!-- <div class="list-group-item">
 							<div class="panel-heading">
 								<h4 class="panel-title">
 									<a href="#">Corrective Action Plan</a>
 								</h4>
 							</div>
-						</div>
+						</div> -->
 
 						<div class="list-group-item">
 							<div class="panel-heading">

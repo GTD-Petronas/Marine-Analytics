@@ -405,7 +405,7 @@ if($inspector2!=0){
                   LEFT JOIN MarSIS_MDM_Status c ON a.STATUS_ID=c.STATUS_ID LEFT JOIN MarSIS_MDM_TimeFrame d ON a.TIMEFRAME_ID=d.TIMEFRAME_ID
                   WHERE INSPECTION_ID='$INSPECTION_ID' AND a.INS_ITEM_ID IN ('1','2','3','4','5','6','7')";
                   $stmtInspectionI = sqlsrv_query( $conn, $sqlInspectionI);
-$i=1;
+                  $i=1;
                   while( $row = sqlsrv_fetch_array( $stmtInspectionI, SQLSRV_FETCH_ASSOC) ) {
                     echo"
                     <tr>
@@ -423,7 +423,7 @@ $i=1;
 
 
                     </tr>";
-                      $i++;
+                    $i++;
                   }
                   echo "</table>";
 
@@ -463,7 +463,7 @@ $i=1;
                       LEFT JOIN MarSIS_MDM_Status c ON a.STATUS_ID=c.STATUS_ID LEFT JOIN MarSIS_MDM_TimeFrame d ON a.TIMEFRAME_ID=d.TIMEFRAME_ID
                       WHERE INSPECTION_ID='$INSPECTION_ID' AND a.INS_ITEM_ID IN ('8','9','10','11','12','13','14','15')";
                       $stmtInspectionI = sqlsrv_query( $conn, $sqlInspectionI);
-$k=1;
+                      $k=1;
                       while( $row = sqlsrv_fetch_array( $stmtInspectionI, SQLSRV_FETCH_ASSOC) ) {
                         echo"
                         <tr>
@@ -516,7 +516,7 @@ $k=1;
                           LEFT JOIN MarSIS_MDM_Status c ON a.STATUS_ID=c.STATUS_ID LEFT JOIN MarSIS_MDM_TimeFrame d ON a.TIMEFRAME_ID=d.TIMEFRAME_ID
                           WHERE INSPECTION_ID='$INSPECTION_ID' AND a.INS_ITEM_ID IN ('16','17','18','19')";
                           $stmtInspectionI = sqlsrv_query( $conn, $sqlInspectionI);
-$j=1;
+                          $j=1;
                           while( $row = sqlsrv_fetch_array( $stmtInspectionI, SQLSRV_FETCH_ASSOC) ) {
                             echo"
                             <tr>
@@ -572,9 +572,9 @@ $j=1;
                               <?php
                               $sqlInspectionI = "SELECT * FROM MarSIS_DW_Findings a LEFT JOIN MarSIS_MDM_InspectionItem b ON a.INS_ITEM_ID=b.NO
                               LEFT JOIN MarSIS_MDM_Status c ON a.STATUS_ID=c.STATUS_ID LEFT JOIN MarSIS_MDM_TimeFrame d ON a.TIMEFRAME_ID=d.TIMEFRAME_ID
-                              WHERE INSPECTION_ID='$INSPECTION_ID'";
+                              WHERE INSPECTION_ID='$INSPECTION_ID' AND c.STATUS_ID IN('2','4') ORDER BY FINDINGS_ID ASC";
                               $stmtInspectionI = sqlsrv_query( $conn, $sqlInspectionI);
-$l=1;
+                              $l=1;
                               while( $row = sqlsrv_fetch_array( $stmtInspectionI, SQLSRV_FETCH_ASSOC) ) {
                                 echo"
                                 <tr>
@@ -608,16 +608,33 @@ $l=1;
 
                     </div>
                   </br>
+                  <?php
+                  $query5="SELECT COUNT(*) as count FROM MarSIS_DW_Findings WHERE INSPECTION_ID='$INSPECTION_ID' AND STATUS_ID =2";
+
+                  $stmt5 = sqlsrv_query($conn, $query5);
+                  $row5 = sqlsrv_fetch_array($stmt5, SQLSRV_FETCH_ASSOC);
+                  $count=$row5['count'];
+                  if($count==0){
+                    ?>
                     <button onclick="location.href='index.php?page=home'" style="background-color:#40E0D0" class="btn btn-info btn-md pull-right">
-                      <i class="fa fa-dot-circle-o"></i> Close
+                    <i class="fa fa-dot-circle-o"></i> Close Inspection Report
+                  </button>
+              <?php  }else{
+                  ?>
+                    <button style="background-color:#40E0D0" class="btn btn-info btn-md pull-right">
+                      <i class="fa fa-dot-circle-o"></i> Close Inspection Report
                     </button>
-                  </div>
+                  <?php
+                }?>
+
+
                 </div>
               </div>
-
-
-
-
             </div>
+
+
+
+
           </div>
-        </section>
+        </div>
+      </section>

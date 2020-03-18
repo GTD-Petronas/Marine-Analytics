@@ -403,7 +403,7 @@ if($inspector2!=0){
                   <?php
                   $sqlInspectionI = "SELECT * FROM MarSIS_DW_Findings a LEFT JOIN MarSIS_MDM_InspectionItem b ON a.INS_ITEM_ID=b.NO
                   LEFT JOIN MarSIS_MDM_Status c ON a.STATUS_ID=c.STATUS_ID LEFT JOIN MarSIS_MDM_TimeFrame d ON a.TIMEFRAME_ID=d.TIMEFRAME_ID
-                  WHERE INSPECTION_ID='$INSPECTION_ID' AND a.INS_ITEM_ID IN ('1','2','3','4','5','6','7')";
+                  WHERE INSPECTION_ID='$INSPECTION_ID' AND a.INS_ITEM_ID IN ('1','2','3','4','5','6','7') ORDER BY FINDINGS_ID ASC";
                   $stmtInspectionI = sqlsrv_query( $conn, $sqlInspectionI);
 
                   $i=1;
@@ -418,9 +418,13 @@ if($inspector2!=0){
                     }else{
                       echo "<td>N/A</td>";
                     }
-                    echo "<td>".$row['STATUS_NAME']."</td>
-                    <td>".$row['TIMEFRAME_NAME']."</td>
-                    <td>".$row['LAST_UPDATED']."</td>
+                    echo "<td>".$row['STATUS_NAME']."</td>";
+                    if($row['TIMEFRAME_NAME']==NULL){
+                      echo"<td>N/A</td>";
+                    }else{
+                    echo"<td>".$row['TIMEFRAME_NAME']."</td>";
+                  }
+                    echo"<td>".$row['LAST_UPDATED']."</td>
 
 
                     </tr>";
@@ -462,7 +466,7 @@ if($inspector2!=0){
                       <?php
                       $sqlInspectionI = "SELECT * FROM MarSIS_DW_Findings a LEFT JOIN MarSIS_MDM_InspectionItem b ON a.INS_ITEM_ID=b.NO
                       LEFT JOIN MarSIS_MDM_Status c ON a.STATUS_ID=c.STATUS_ID LEFT JOIN MarSIS_MDM_TimeFrame d ON a.TIMEFRAME_ID=d.TIMEFRAME_ID
-                      WHERE INSPECTION_ID='$INSPECTION_ID' AND a.INS_ITEM_ID IN ('8','9','10','11','12','13','14','15')";
+                      WHERE INSPECTION_ID='$INSPECTION_ID' AND a.INS_ITEM_ID IN ('8','9','10','11','12','13','14','15') ORDER BY FINDINGS_ID ASC";
                       $stmtInspectionI = sqlsrv_query( $conn, $sqlInspectionI);
                       $j=1;
                       while( $row = sqlsrv_fetch_array( $stmtInspectionI, SQLSRV_FETCH_ASSOC) ) {
@@ -472,9 +476,13 @@ if($inspector2!=0){
                         <td>".$row['INS_GROUP_ITEM']."</td>
                         <td>".$row['FINDINGS']."</td>
                         <td>N/A</td>
-                        <td>".$row['STATUS_NAME']."</td>
-                        <td>".$row['TIMEFRAME_NAME']."</td>
-                        <td>".$row['LAST_UPDATED']."</td>
+                        <td>".$row['STATUS_NAME']."</td>";
+                        if($row['TIMEFRAME_NAME']==NULL){
+                          echo"<td>N/A</td>";
+                        }else{
+                        echo"<td>".$row['TIMEFRAME_NAME']."</td>";
+                      }
+                        echo"<td>".$row['LAST_UPDATED']."</td>
 
 
                         </tr>";
@@ -515,7 +523,7 @@ if($inspector2!=0){
                           <?php
                           $sqlInspectionI = "SELECT * FROM MarSIS_DW_Findings a LEFT JOIN MarSIS_MDM_InspectionItem b ON a.INS_ITEM_ID=b.NO
                           LEFT JOIN MarSIS_MDM_Status c ON a.STATUS_ID=c.STATUS_ID LEFT JOIN MarSIS_MDM_TimeFrame d ON a.TIMEFRAME_ID=d.TIMEFRAME_ID
-                          WHERE INSPECTION_ID='$INSPECTION_ID' AND a.INS_ITEM_ID IN ('16','17','18','19')";
+                          WHERE INSPECTION_ID='$INSPECTION_ID' AND a.INS_ITEM_ID IN ('16','17','18','19') ORDER BY FINDINGS_ID ASC";
                           $stmtInspectionI = sqlsrv_query( $conn, $sqlInspectionI);
                           $k=1;
                           while( $row = sqlsrv_fetch_array( $stmtInspectionI, SQLSRV_FETCH_ASSOC) ) {
@@ -525,9 +533,13 @@ if($inspector2!=0){
                             <td>".$row['INS_GROUP_ITEM']."</td>
                             <td>".$row['FINDINGS']."</td>
                             <td>N/A</td>
-                            <td>".$row['STATUS_NAME']."</td>
-                            <td>".$row['TIMEFRAME_NAME']."</td>
-                            <td>".$row['LAST_UPDATED']."</td>
+                            <td>".$row['STATUS_NAME']."</td>";
+                            if($row['TIMEFRAME_NAME']==NULL){
+                              echo"<td>N/A</td>";
+                            }else{
+                            echo"<td>".$row['TIMEFRAME_NAME']."</td>";
+                          }
+                            echo"<td>".$row['LAST_UPDATED']."</td>
 
 
                             </tr>";

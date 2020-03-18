@@ -121,7 +121,7 @@ $count= $row['count'];
                       <th style="background:#40E0D0 !important">Last Update</th>
                     </tr>
                     <?php
-                    if(!empty($row_count)){
+                    if(!empty($count)){
                       $sqlInspectionI = "SELECT * FROM MarSIS_DW_Findings a LEFT JOIN MarSIS_MDM_InspectionItem b ON a.INS_ITEM_ID=b.NO
                       LEFT JOIN MarSIS_MDM_Status c ON a.STATUS_ID=c.STATUS_ID LEFT JOIN MarSIS_MDM_TimeFrame d ON a.TIMEFRAME_ID=d.TIMEFRAME_ID
                       WHERE INSPECTION_ID='$INSPECTION_ID' AND a.INS_ITEM_ID IN ('13')";
@@ -208,10 +208,9 @@ $count= $row['count'];
           </div>
 
         </div>
-      </br>
-      <button type="submit" name="submit" class="btn btn-md pull-right" style="background-color:#40E0D0">Save</button>
+        <button formaction="index.php?page=HSE2_Hull_edit" class="btn btn-md pull-right" style="background-color:#40E0D0;">Next</button>
+        <button type="submit" name="submit" class="btn btn-md pull-right" style="background-color:#40E0D0; margin-right:5px;">Save</button>
         </form>
-      <button onclick="location.href='index.php?page=HSE2_Hull_edit'" class="btn btn-md pull-right" style="background-color:#40E0D0; margin-right:5px; ">Next</button>
 
   </div>
 </div>
